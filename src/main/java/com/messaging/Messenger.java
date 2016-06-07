@@ -1,4 +1,4 @@
-package jms.local.mom;
+package com.messaging;
 
 /**
  * Created by Igor on 07.06.2016.

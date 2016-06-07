@@ -1,14 +1,16 @@
-package jms.local.client;
+package com.messaging.impl.hazelcast.run;
 
-import jms.local.mom.Messenger;
-import jms.local.mom.SimpleQueueMessenger;
+import com.messaging.Messenger;
+import com.messaging.client.RunnableReceiver;
+import com.messaging.client.RunnableSender;
+import com.messaging.impl.hazelcast.mom.HazelcastQueueMessenger;
 
 /**
  * Created by Igor on 07.06.2016.
  */
 public class Runner {
     public static void main(String[] args) {
-        final Messenger messenger = new SimpleQueueMessenger();
+        final Messenger messenger = new HazelcastQueueMessenger();
 
         RunnableSender sender1 = new RunnableSender("SENDER1", messenger);
         RunnableSender sender2 = new RunnableSender("SENDER2", messenger);

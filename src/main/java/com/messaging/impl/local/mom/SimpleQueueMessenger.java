@@ -1,4 +1,6 @@
-package jms.local.mom;
+package com.messaging.impl.local.mom;
+
+import com.messaging.Messenger;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

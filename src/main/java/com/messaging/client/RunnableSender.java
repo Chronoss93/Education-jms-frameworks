@@ -1,6 +1,6 @@
-package jms.local.client;
+package com.messaging.client;
 
-import jms.local.mom.Messenger;
+import com.messaging.Messenger;
 
 /**
  * Created by Igor_Kravchenko on 6/7/16.
@@ -10,7 +10,7 @@ public class RunnableSender implements Runnable {
     private Thread t;
     private String threadName;
 
-    RunnableSender(String name, Messenger messenger) {
+    public RunnableSender(String name, Messenger messenger) {
         this.messenger = messenger;
         threadName = name;
         System.out.println("Creating " + threadName);
