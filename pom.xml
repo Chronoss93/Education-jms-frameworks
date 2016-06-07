@@ -5,6 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <hazelcast.version>3.6.3</hazelcast.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <lombok.version>1.16.8</lombok.version>
     </properties>
     <groupId>com.test.jms</groupId>
     <artifactId>queue</artifactId>
@@ -27,6 +29,16 @@
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <version>${hazelcast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
     </dependencies>

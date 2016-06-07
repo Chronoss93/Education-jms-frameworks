@@ -1,10 +1,12 @@
 package com.messaging.client;
 
 import com.messaging.Messenger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by Igor_Kravchenko on 6/7/16.
  */
+@Slf4j
 public class RunnableReceiver implements Runnable {
     private final Messenger messenger;
     private Thread t;
@@ -13,7 +15,7 @@ public class RunnableReceiver implements Runnable {
     public RunnableReceiver(String name, Messenger messenger) {
         this.messenger = messenger;
         threadName = name;
-        System.out.println("Creating " + threadName);
+        log.info("Creating " + threadName);
     }
 
     public void run() {

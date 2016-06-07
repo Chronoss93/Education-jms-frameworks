@@ -19,6 +19,8 @@ public class HazelcastQueueMessenger implements Messenger {
     @Override
     public void sendMessage(String msg) throws InterruptedException {
         boolean sent = queue.offer(msg, 10, TimeUnit.SECONDS);
+        if(!sent)
+        System.out.println(sent);
     }
 
     //test normal boolean
