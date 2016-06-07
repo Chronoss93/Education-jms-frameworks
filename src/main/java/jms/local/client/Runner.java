@@ -10,37 +10,29 @@ public class Runner {
     public static void main(String[] args) {
         final Messenger messenger = new SimpleQueueMessenger();
 
-        Runnable runnable1 = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while (true) {
-                        int sentCount = messenger.sendMessage("msg");
-                        System.out.println("thread1: message sent: " + sentCount);
-                        Thread.sleep(1000l);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while (true) {
-                        String s = messenger.receiveMessage();
-                        System.out.println("thread2: message received: " + s);
-                        Thread.sleep(1000l);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread thread1 = new Thread(runnable1);
-        Thread thread2 = new Thread(runnable2);
-        thread1.run();
-        thread2.run();
+        RunnableSender sender1 = new RunnableSender("SENDER1", messenger);
+        RunnableSender sender2 = new RunnableSender("SENDER2", messenger);
+        RunnableSender sender3 = new RunnableSender("SENDER3", messenger);
+        RunnableSender sender4 = new RunnableSender("SENDER4", messenger);
+        sender1.start();
+        sender2.start();
+        sender3.start();
+        sender4.start();
+        RunnableReceiver receiver1 = new RunnableReceiver("RECEIVER1", messenger);
+        RunnableReceiver receiver2 = new RunnableReceiver("RECEIVER2", messenger);
+        RunnableReceiver receiver3 = new RunnableReceiver("RECEIVER3", messenger);
+        RunnableReceiver receiver4 = new RunnableReceiver("RECEIVER4", messenger);
+        RunnableReceiver receiver5 = new RunnableReceiver("RECEIVER5", messenger);
+        RunnableReceiver receiver6 = new RunnableReceiver("RECEIVER6", messenger);
+        RunnableReceiver receiver7 = new RunnableReceiver("RECEIVER7", messenger);
+        RunnableReceiver receiver8 = new RunnableReceiver("RECEIVER8", messenger);
+        receiver1.start();
+        receiver2.start();
+        receiver3.start();
+        receiver4.start();
+        receiver5.start();
+        receiver6.start();
+        receiver7.start();
+        receiver8.start();
     }
 }
