@@ -1,6 +1,6 @@
 package com.messaging.impl.local.mom;
 
-import com.messaging.Messenger;
+import com.messaging.SimpleQueue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by Igor on 05.06.2016.
  */
-public class SimpleQueueMessenger implements Messenger {
+public class LocalSimpleQueue implements SimpleQueue {
 
     private final BlockingQueue<String> queue = new LinkedBlockingQueue<>(1000);
 

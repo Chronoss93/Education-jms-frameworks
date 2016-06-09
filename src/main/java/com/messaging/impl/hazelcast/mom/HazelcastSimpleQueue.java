@@ -2,7 +2,7 @@ package com.messaging.impl.hazelcast.mom;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.messaging.Messenger;
+import com.messaging.SimpleQueue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by Igor on 05.06.2016.
  */
-public class HazelcastQueueMessenger implements Messenger {
+public class HazelcastSimpleQueue implements SimpleQueue {
 
     private HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
     private final BlockingQueue<String> queue = hazelcastInstance.getQueue("messenger");

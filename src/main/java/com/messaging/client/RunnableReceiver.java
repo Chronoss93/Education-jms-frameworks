@@ -1,6 +1,6 @@
 package com.messaging.client;
 
-import com.messaging.Messenger;
+import com.messaging.SimpleQueue;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -8,12 +8,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class RunnableReceiver implements Runnable {
-    private final Messenger messenger;
+    private final SimpleQueue simpleQueue;
     private Thread t;
     private String threadName;
 
-    public RunnableReceiver(String name, Messenger messenger) {
-        this.messenger = messenger;
+    public RunnableReceiver(String name, SimpleQueue simpleQueue) {
+        this.simpleQueue = simpleQueue;
         threadName = name;
         log.info("Creating " + threadName);
     }
@@ -22,9 +22,9 @@ public class RunnableReceiver implements Runnable {
         System.out.println("Running " + threadName);
         try {
             while (true) {
-                String s = messenger.receiveMessage();
+                String s = simpleQueue.receiveMessage();
                 System.out.println(threadName + ": message received: " + s);
-                Thread.sleep(2000L);
+                Thread.sleep(1000L);
             }
         } catch (InterruptedException e) {
             System.out.println("Thread " + threadName + " interrupted.");
