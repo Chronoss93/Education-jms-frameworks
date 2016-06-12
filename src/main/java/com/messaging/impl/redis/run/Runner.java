@@ -9,7 +9,11 @@ import redis.clients.jedis.JedisPubSub;
  * Created by Igor_Kravchenko on 6/9/16.
  */
 public class Runner {
+
+    public static final String SINGLE = "single";
+
     public static void main(String[] args) {
+
 
         /**
          * You shouldn't use the same instance from different threads because you'll have strange errors.
@@ -26,6 +30,7 @@ public class Runner {
         /**
          * Try with resource is very useful
          * Pub/sub
+         * Problems with windows version. Check compatibility of redis and diver
          */
         try (Jedis jedis = pool.getResource()) {
             //consumer
@@ -34,17 +39,24 @@ public class Runner {
                 public void onMessage(String channel, String message) {
                     System.out.println("message arrived:" + message);
                 }
-            }, "topiclist/*", "single");
+            }, "topiclist/*", SINGLE);
 
             //publisher
-            jedis.publish("single", "Some info");
+            while (true) {
+                jedis.publish(SINGLE, "Some info");
+                System.out.println("published");
+            }
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+            System.out.println("EXC");
+            System.out.println("EXC");
+            System.out.println("EXC");
         }
 
         /**
          * simple queue
          */
-
-
 
 
     }
