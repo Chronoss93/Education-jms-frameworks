@@ -25,7 +25,13 @@ public class Runner {
          * given you return the Jedis instance to the pool when done.
          * This way you can overcome those strange errors and achieve great performance.
          */
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(1000);
+        config.setMaxIdle(10);
+        config.setMinIdle(1);
+        config.setMaxWaitMillis(30000);
+
+        JedisPool pool = new JedisPool(config, "localhost", 6379);
 
         /**
          * Try with resource is very useful
@@ -34,18 +40,15 @@ public class Runner {
          */
         try (Jedis jedis = pool.getResource()) {
             //consumer
-            jedis.subscribe(new JedisPubSub() {
-                @Override
-                public void onMessage(String channel, String message) {
-                    System.out.println("message arrived:" + message);
-                }
-            }, "topiclist/*", SINGLE);
+            MyJedisPubSub myJedisPubSub = new MyJedisPubSub();
+//            jedis.subscribe(myJedisPubSub, SINGLE);
 
             //publisher
             while (true) {
                 jedis.publish(SINGLE, "Some info");
                 System.out.println("published");
             }
+//            jedis.
 
         } catch (Throwable e) {
             e.printStackTrace();
@@ -60,4 +63,7 @@ public class Runner {
 
 
     }
+
+
+
 }
